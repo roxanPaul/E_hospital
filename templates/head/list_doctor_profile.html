@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <div class="container mt-4">
+    <h2>Doctor Profiles</h2>
+    <a href="{% url 'add_doctor' %}" class="btn btn-primary mb-3">Add Doctor</a>
+    <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.name }}</h5>
+                    <p class="card-text">Department: {{ doctor.department }}</p>
+                    <p class="card-text">Contact Number: {{ doctor.contact_number }}</p>
+                    <div class="d-flex justify-content-between">
+                        <form method="post" action="{% url 'update_doctor' doctor.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_doctor' doctor.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a href="{% url 'home' %}">Back to Home Page</a>
+
+{% endblock %}

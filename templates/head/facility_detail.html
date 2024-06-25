@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<h1>{{ facility.name }}</h1>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+
+        <h4 class="card-text">Department:{{ facility.department }}</h4>
+        <p class="card-text">Description: {{ facility.description }}</p>
+    </div>
+</div>
+<a href="{% url 'facility_list' %}" class="btn btn-secondary mt-3">Back to Facility List</a>
+{% endblock %}

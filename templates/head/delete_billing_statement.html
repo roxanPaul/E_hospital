@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Delete Billing Statement</h2>
+  <p>Are you sure you want to delete the billing statement for {{ billing_statement.appointment.patient.name }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h2>{% if form.instance.pk %}Update{% else %}Add{% endif %} Appointment</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Update{% else %}Add{% endif %}</button>
+</form>
+<a href="{% url 'appointments_list' %}" class="btn btn-secondary mt-3">Back to Appointment List</a>
+{% endblock %}

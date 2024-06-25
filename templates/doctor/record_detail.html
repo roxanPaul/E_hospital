@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-4">
+    <h2>Medical Record Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Patient: {{ record.patient.name }}</h5>
+            <p class="card-text"><strong>Diagnoses:</strong> {{ record.diagnoses }}</p>
+            <p class="card-text"><strong>Medications:</strong> {{ record.medications }}</p>
+            <p class="card-text"><strong>Treatment Plan:</strong> {{ record.treatment_plan }}</p>
+
+            <a href="{% url 'record_update' record.pk %}" class="btn btn-warning">Update</a>
+            <form method="post" action="{% url 'record_delete' record.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+<a href="{% url 'homes' %}">Back to Home Page</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <h2>Patients</h2>
+    <a href="{% url 'add_patient' %}" class="btn btn-primary">Add Patient</a>
+    <div class="container mt-4">
+    <h2>Patients</h2>
+    <a href="{% url 'add_patient' %}" class="btn btn-primary mb-3">Add Patient</a>
+    <div class="row">
+        {% for patient in patients %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ patient.name }}</h5>
+                    <p class="card-text">Age: {{ patient.age }}</p>
+                    <p class="card-text">Date of Birth: {{ patient.date_of_birth }}</p>
+                    <p class="card-text">Address: {{ patient.address }}</p>
+                    <div class="d-flex justify-content-between">
+                        <form method="post" action="{% url 'update_patient' patient.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_patient' patient.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a href="{% url 'home' %}">Back to Home Page</a>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<html>
+<head>
+    <title>Medical Records</title>
+</head>
+<body>
+    <h1>Medical Records</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Medical Record</button>
+    </form>
+
+    <h2>Existing Medical Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Date of Visit</th>
+                <th>Diagnoses</th>
+                <th>Medications</th>
+                <th>Allergies</th>
+                <th>Treatment History</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.patient_name }}</td>
+                <td>{{ record.date_of_visit }}</td>
+                <td>{{ record.diagnoses }}</td>
+                <td>{{ record.medications }}</td>
+                <td>{{ record.allergies }}</td>
+                <td>{{ record.treatment_history }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

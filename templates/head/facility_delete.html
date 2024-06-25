@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h1>Delete Facility</h1>
+    <p>Are you sure you want to delete the facility "{{ facility.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'facility_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

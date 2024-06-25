@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>Patient Profile</h1>
+
+        <div class="patient-details">
+            <h2>{{ patient_profile.user.get_full_name }}</h2>
+            <p>Email: {{ patient_profile.user.email }}</p>
+            <p>Date of Birth: {{ patient_profile.date_of_birth }}</p>
+            <p>Address: {{ patient_profile.address }}</p>
+            <p>Phone Number: {{ patient_profile.phone_number }}</p>
+        </div>
+
+        <h2>Medical Records</h2>
+        {% if medical_records %}
+            {% for record in medical_records %}
+                <div class="medical-record">
+                    <h3>Medical Record {{ forloop.counter }}</h3>
+                    <p><strong>Diagnosis:</strong> {{ record.diagnosis }}</p>
+                    <p><strong>Medications:</strong> {{ record.medications }}</p>
+                    <p><strong>Allergies:</strong> {{ record.allergies }}</p>
+                    <p><strong>Treatment History:</strong> {{ record.treatment_history }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No medical records found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

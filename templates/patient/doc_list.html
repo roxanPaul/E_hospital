@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.name }}</h5>
+                    <p class="card-text">Department: {{ doctor.department }}</p>
+                    <p class="card-text">Contact Number: {{ doctor.contact_number }}</p>
+                </div>
+            </div>
+        </div>
+</div>
+{% endfor %}
+</body>
+{% endblock %}

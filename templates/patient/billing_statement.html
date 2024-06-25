@@ -1,0 +1,14 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Billing Statement</h2>
+<p>Patient: {{ billing.appointment.patient.name }}</p>
+<p>Amount Due: {{ billing.amount_due }}</p>
+<p>Due Date: {{ billing.due_date }}</p>
+<p>Payment Status: {{ billing.payment_status }}</p>
+
+<!-- Optionally, add a link to pay the bill -->
+<a href="{% url 'payment_billing_session' billing.id %}">Pay Now</a>
+{% endblock %}

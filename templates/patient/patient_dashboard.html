@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<h1>Welcome To Medico</h1>
+<p>Welcome to the Medico Hospitality. Use the buttons below to navigate to different sections.</p>
+
+<a href="{% url 'doc_list' %}" class="btn btn-primary" role="button">Doctor</a>
+<a href="{% url 'health_resources' %}" class="btn btn-primary" role="button">Services</a>
+<a href="{% url 'appointment_booking' %}" class="btn btn-primary" role="button">Appointment</a>
+<a href="{% url 'patient_billing_statements' %}" class="btn btn-primary" role="button">Pay the Bill</a>
+
+{% endblock %}

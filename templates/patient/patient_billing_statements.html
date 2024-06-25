@@ -1,0 +1,31 @@
+<!-- templates/patient/patient_billing_statements.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Billing Statements</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Amount Due</th>
+        <th>Due Date</th>
+        <th>Payment Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for billing_statement in billing_statements %}
+        <tr>
+          <td>{{ billing_statement.appointment.patient.name }}</td>
+          <td>{{ billing_statement.amount_due }}</td>
+          <td>{{ billing_statement.due_date }}</td>
+          <td>{{ billing_statement.payment_status }}</td>
+          <td>
+            <a href="{% url 'billing_statement' billing_statement.id %}">View</a>
+            <a href="{% url 'payment_billing_session' billing_statement.id %}">Pay</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

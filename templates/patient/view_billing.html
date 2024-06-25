@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Billing Information</h1>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Patient: {{ billing.appointment.patient.name }}</h4>
+                <p class="card-text">Amount Due: {{ billing.amount_due }}</p>
+                <p class="card-text">Due Date: {{ billing.due_date }}</p>
+                <p class="card-text">Payment Status: {{ billing.get_payment_status_display }}</p>
+                {% if billing.payment_status == 'pending' %}
+                    <a href="{% url 'create_billing_session' billing.id %}" class="btn btn-primary">Pay Now</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

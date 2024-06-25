@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+    <h2>Appointments</h2>
+    <div class="mb-3">
+        <a href="{% url 'appointments_create' %}" class="btn btn-primary">Add Appointment</a>
+    </div>
+    <div class="row">
+        {% for appointment in appointments %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <ul>
+                        <li>
+                    <h5 class="card-title">Patient:{{ appointment.patient.name }}</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">Doctor:{{ appointment.doctor.name }}</h5>
+                    <p class="card-text">Date and Time: {{ appointment.date_and_time }}</p>
+                    <p class="card-text">Status: {{ appointment.status }}</p>
+                    <a href="{% url 'appointments_update' appointment.pk %}" class="btn btn-warning">Update</a>
+                    <form method="post" action="{% url 'appointments_delete' appointment.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                        </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a href="{% url 'home' %}">Back to Home Page</a>
+{% endblock %}

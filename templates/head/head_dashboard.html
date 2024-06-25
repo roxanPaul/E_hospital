@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<h1>Admin Dashboard</h1>
+<p>Welcome to the admin dashboard. Use the buttons below to navigate to different sections.</p>
+
+<a href="{% url 'list_doctor' %}" class="btn btn-primary" role="button">Doctor</a>
+<a href="{% url 'list_patient' %}" class="btn btn-primary" role="button">Patient</a>
+<a href="{% url 'appointments_list' %}" class="btn btn-primary" role="button">Appointment</a>
+<a href="{% url 'facility_list' %}" class="btn btn-primary" role="button">Facility</a>
+<a href="{% url 'list_billing_statement' %}" class="btn btn-primary" role="button">Patient Bills</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+
+<!-- medical_record_list.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-4">
+    <h2>Medical Records</h2>
+    <a href="{% url 'record_add' %}" class="btn btn-primary mb-3">Add Medical Record</a>
+    <div class="row">
+        {% for record in records %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Patient No: {{ record.patient.id }}</h5>
+                    <h5 class="card-title">Patient: {{ record.patient.name }}</h5>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'record_detail' record.pk %}" class="btn btn-primary">Detail</a>
+                        <a href="{% url 'record_update' record.pk %}" class="btn btn-warning">Update</a>
+                        <form method="post" action="{% url 'record_delete' record.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No medical records found.</p>
+        {% endfor %}
+    </div>
+</div>
+<a href="{% url 'homes' %}">Back to Home Page</a>
+{% endblock %}

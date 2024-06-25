@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <h2>Facilities</h2>
+    <ul>
+        {% for facility in facilities %}
+        <li><a href="{% url 'facility_detail' facility.pk %}">{{ facility.name }}</a></li>
+        {% endfor %}
+    </ul>
+<a href="{% url 'home' %}">Back to Home Page</a>
+{% endblock %}
